@@ -1,0 +1,24 @@
+﻿{
+  "inspection_date": "2025-12-15",
+  "inspector_name": "Test Items After Restart",
+  "inspector_email": "verify@example.com",
+  "comments": "Verify item photo/doc persisted as objects",
+  "status": "completed",
+  "items": [
+    {
+      "id": "itm-1",
+      "category": "General",
+      "item_number": 1,
+      "item_text": "Item with attachments",
+      "response": "yes",
+      "location_action": "loc",
+      "action_date": "2025-12-15",
+      "remarks": "ok",
+      "photo": { "url": "https://gadupathi.s3.ap-south-1.amazonaws.com/inspections/1765756735861_test-upload2.txt", "key": "inspections/1765756735861_test-upload2.txt", "type": "text/plain", "name": "test-upload2.txt" },
+      "doc": { "url": "https://gadupathi.s3.ap-south-1.amazonaws.com/inspections/1765756404211_test-upload.txt", "key": "inspections/1765756404211_test-upload.txt", "type": "text/plain", "name": "test-upload.txt" }
+    }
+  ],
+  "inspector_selfie": null,
+  "inspector_signature": null,
+  "geo_location": null
+}

@@ -1,0 +1,24 @@
+﻿{
+  "inspection_date": "2025-12-15",
+  "inspector_name": "Verify Checklist Save",
+  "inspector_email": "verify+ui@example.com",
+  "comments": "Auto-test: ensure checklist items persist",
+  "status": "completed",
+  "items": [
+    {
+      "id": "test-item-1",
+      "category": "Fire and Security",
+      "item_number": 1,
+      "item_text": "Are Fire exits and fire equipment free from obstruction?",
+      "response": "yes",
+      "location_action": "Floor 1",
+      "action_date": "2025-12-15",
+      "remarks": "Checked",
+      "photo": { "url": "https://example.com/photo.jpg", "key": "inspections/photo.jpg", "type": "image/jpeg", "name": "photo.jpg" },
+      "doc": { "url": "https://example.com/doc.pdf", "key": "inspections/doc.pdf", "type": "application/pdf", "name": "doc.pdf" }
+    }
+  ],
+  "inspector_selfie": null,
+  "inspector_signature": null,
+  "geo_location": null
+}
