@@ -115,8 +115,20 @@ router.post('/', upload.array('images', 12), async (req, res) => {
       inspector_email: inspectionData.inspector_email,
       comments: inspectionData.comments,
       status: inspectionData.status || 'draft',
-      items: inspectionData.items || [],
-        images: fileUrls,
+      // normalize items: ensure fields we expect are present so Mongoose stores them
+      items: Array.isArray(inspectionData.items)
+        ? inspectionData.items.map((it) => ({
+            item_number: it.item_number ?? it.itemNo ?? null,
+            item_text: it.item_text || it.text || it.item || '',
+            response: it.response || 'na',
+            location_action: it.location_action || it.locationAction || '',
+            action_date: it.action_date || it.actionDate || '',
+            remarks: it.remarks || '',
+            photo: it.photo || null,
+            doc: it.doc || null,
+          }))
+        : [],
+      images: fileUrls,
       geo_location: inspectionData.geo_location || null,
       inspector_selfie: inspectionData.inspector_selfie || null,
       inspector_signature: inspectionData.inspector_signature || null,
@@ -135,6 +147,8 @@ router.post('/', upload.array('images', 12), async (req, res) => {
 router.post('/json', async (req, res) => {
   try {
     const inspectionData = req.body;
+    console.log('DEBUG POST /api/inspections/json received items:', Array.isArray(inspectionData?.items) ? inspectionData.items : inspectionData?.items);
+    console.log('DEBUG POST /api/inspections/json signature:', inspectionData?.inspector_signature && typeof inspectionData.inspector_signature === 'string' ? (inspectionData.inspector_signature?.slice?.(0,80)+'...') : inspectionData?.inspector_signature);
     if (inspectionData && inspectionData.hospital) inspectionData.hospital = normalizeHospitalImages(inspectionData.hospital)
     if (!inspectionData) return res.status(400).json({ error: 'Missing inspection data' });
 
@@ -159,7 +173,18 @@ router.post('/json', async (req, res) => {
       inspector_email: inspectionData.inspector_email,
       comments: inspectionData.comments,
       status: inspectionData.status || 'draft',
-      items: inspectionData.items || [],
+      items: Array.isArray(inspectionData.items)
+        ? inspectionData.items.map((it) => ({
+            item_number: it.item_number ?? it.itemNo ?? null,
+            item_text: it.item_text || it.text || it.item || '',
+            response: it.response || 'na',
+            location_action: it.location_action || it.locationAction || '',
+            action_date: it.action_date || it.actionDate || '',
+            remarks: it.remarks || '',
+            photo: it.photo || null,
+            doc: it.doc || null,
+          }))
+        : [],
       images: inspectionData.images || [],
       geo_location: inspectionData.geo_location || null,
       inspector_selfie: inspectionData.inspector_selfie || null,
@@ -236,7 +261,18 @@ router.put('/:id', async (req, res) => {
       inspector_email: inspectionData.inspector_email,
       comments: inspectionData.comments,
       status: inspectionData.status || 'draft',
-      items: inspectionData.items || [],
+      items: Array.isArray(inspectionData.items)
+        ? inspectionData.items.map((it) => ({
+            item_number: it.item_number ?? it.itemNo ?? null,
+            item_text: it.item_text || it.text || it.item || '',
+            response: it.response || 'na',
+            location_action: it.location_action || it.locationAction || '',
+            action_date: it.action_date || it.actionDate || '',
+            remarks: it.remarks || '',
+            photo: it.photo || null,
+            doc: it.doc || null,
+          }))
+        : [],
       images: inspectionData.images || [],
       geo_location: inspectionData.geo_location || null,
       inspector_selfie: inspectionData.inspector_selfie || null,
